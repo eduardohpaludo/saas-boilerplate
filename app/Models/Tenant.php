@@ -10,4 +10,26 @@ use Stancl\Tenancy\Database\Concerns\HasDomains;
 class Tenant extends BaseTenant implements TenantWithDatabase
 {
     use HasDatabase, HasDomains;
+
+    protected $with = [
+        'domains',
+    ];
+
+    protected $hidden = [
+        'password',
+    ];
+
+    public static function getCustomColumns(): array
+    {
+        return [
+            'id',
+            'name',
+        ];
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        return $this->attributes['password'] = bcrypt($value);
+    }
+
 }

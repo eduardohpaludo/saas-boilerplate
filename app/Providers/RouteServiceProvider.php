@@ -52,11 +52,6 @@ class RouteServiceProvider extends ServiceProvider
         }
     }
 
-    protected function centralDomains(): array
-    {
-        return config('tenancy.central_domains');
-    }
-
     protected function mapApiRoutes()
     {
         foreach ($this->centralDomains() as $domain) {
@@ -68,5 +63,9 @@ class RouteServiceProvider extends ServiceProvider
         }
     }
 
+    protected function centralDomains(): array
+    {
+        return config('tenancy.central_domains');
+    }
 
 }

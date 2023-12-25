@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Jobs\CreateTenantAdmin;
 use App\Jobs\Tenancy\CreateDatabaseJob;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
 use Stancl\JobPipeline\JobPipeline;
 use Stancl\Tenancy\Events;
 use Stancl\Tenancy\Jobs;
@@ -28,6 +30,7 @@ class TenancyServiceProvider extends ServiceProvider
                 JobPipeline::make([
                     CreateDatabaseJob::class,
                     Jobs\MigrateDatabase::class,
+                    CreateTenantAdmin::class,
                     Jobs\SeedDatabase::class,
 
                     // Your own jobs to prepare the tenant.
@@ -104,6 +107,15 @@ class TenancyServiceProvider extends ServiceProvider
         $this->mapRoutes();
 
         $this->makeTenancyMiddlewareHighestPriority();
+
+        Livewire::setUpdateRoute(function ($handle) {
+            return Route::post('/livewire/update', $handle)
+                ->middleware(
+                    'web',
+                    'universal',
+                    Middleware\InitializeTenancyByDomain::class, // or whatever tenancy middleware you use
+                );
+        });
     }
 
     protected function bootEvents()
