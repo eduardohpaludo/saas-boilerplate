@@ -36,17 +36,14 @@
                                 <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                                     {{ $user->email }}
                                 </td>
-{{--                                <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">--}}
-{{--                                    @foreach($tenant->domains as $domain)--}}
-{{--                                        {{ $domain->domain }}{{ $loop->last ? '' : ',' }}--}}
-{{--                                    @endforeach--}}
-{{--                                </td>--}}
                                 <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-
+                                    @foreach($user->roles as $role)
+                                        {{ $role->name }}{{ $loop->last ? '' : ',' }}
+                                    @endforeach
                                 </td>
 
                                 <td class="px-6 py-4">
-                                    <x-link href="#">Edit</x-link>
+                                    <x-link href="{{ route('users.edit', $user->id) }}">Edit</x-link>
                                     <form method="POST" action="#" class="inline-block">
                                         @csrf
                                         @method('DELETE')

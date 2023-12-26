@@ -30,8 +30,8 @@ class TenancyServiceProvider extends ServiceProvider
                 JobPipeline::make([
                     CreateDatabaseJob::class,
                     Jobs\MigrateDatabase::class,
-                    CreateTenantAdmin::class,
                     Jobs\SeedDatabase::class,
+                    CreateTenantAdmin::class,
 
                     // Your own jobs to prepare the tenant.
                     // Provision API keys, create S3 buckets, anything you want!
