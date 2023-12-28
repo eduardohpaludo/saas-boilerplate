@@ -20,7 +20,7 @@ class CreateTenantsTable extends Migration
             $table->string('name')->nullable();
             $table->string('logo')->nullable();
             $table->string('color')->nullable();
-
+            $table->string('from')->nullable();
             // your custom columns may go here
 
             $table->timestamps();

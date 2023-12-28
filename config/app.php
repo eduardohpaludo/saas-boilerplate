@@ -173,6 +173,9 @@ return [
         App\Providers\TenancyServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
 
+
+        //App\Providers\UtilityFacadesServiceProvider::class,
+
     ])->toArray(),
 
     /*

@@ -36,6 +36,9 @@ Route::middleware([
 //    });
 
     Route::get('/', function () {
+
+        $user = \App\Models\User::query()->first();
+        $user->notify(new \App\Notifications\TestNotification());
         return view('app.welcome');
     });
 
@@ -50,6 +53,7 @@ Route::middleware([
 
         Route::group(['middleware' => ['role:admin']], function () {
             Route::resource('users', UserController::class);
+            Route::resource('settings', \App\Http\Controllers\App\GeneralSettingController::class);
         });
     });
 
