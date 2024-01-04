@@ -17,10 +17,15 @@
                     </x-nav-link>
                 </div>
 
-                <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('settings')" :active="request()->routeIs('settings')">
                         {{ __('Configurações') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('settings')" :active="request()->routeIs('settings')">
+                        {{ __('Planos') }}
                     </x-nav-link>
                 </div>
             </div>

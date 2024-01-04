@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Central\{
+    GeneralSettingController,
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +36,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('tenants', \App\Http\Controllers\TenantController::class);
+
+    //setting
+    Route::get('settings', [GeneralSettingController::class, 'index'])->name('settings');
+
+    Route::put('settings/payment-setting/update', [GeneralSettingController::class, 'paymentSettingUpdate'])->name('settings.payment.setting.update');
 });
 
 require __DIR__.'/auth.php';

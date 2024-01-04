@@ -174,7 +174,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
 
 
-        //App\Providers\UtilityFacadesServiceProvider::class,
+        App\Providers\UtilityFacadesServiceProvider::class,
 
     ])->toArray(),
 
