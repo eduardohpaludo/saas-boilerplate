@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            $table->float('price')->default(0);
+            $table->string('duration');
+            $table->string('durationtype');
+            $table->integer('max_users')->default(0);
             $table->timestamps();
         });
     }
