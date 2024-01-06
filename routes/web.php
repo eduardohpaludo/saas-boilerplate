@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Central\{
     GeneralSettingController,
 };
+use App\Http\Controllers\Central\Plan\PlanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('tenants', \App\Http\Controllers\TenantController::class);
+
+    //plans
+    //setting
+    Route::get('plans', [PlanController::class, 'index'])->name('plans');
+    Route::get('plans/create', [PlanController::class, 'create'])->name('plans.create');
+    Route::post('plans', [PlanController::class, 'store'])->name('plans.store');
 
     //setting
     Route::get('settings', [GeneralSettingController::class, 'index'])->name('settings');
